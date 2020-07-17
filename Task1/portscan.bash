@@ -1,4 +1,4 @@
-kali@kali:~/Documents/git/PSEC/Task3$ sudo nmap -sS -F 172.20.0.0/20
+kali@kali:~/Documents/git/PSEC/Task1$ sudo nmap -sS -F 172.20.0.0/20
 Starting Nmap 7.80 ( https://nmap.org ) at 2020-07-17 11:23 EDT
 Nmap scan report for 172.20.0.2
 Host is up (0.000027s latency).

@@ -1,14 +1,14 @@
 kali@kali:~/Documents/PSEC/Task1$ sudo service docker status
-● docker.service - Docker Application Container Engine
+docker.service - Docker Application Container Engine
      Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: disabled)
      Active: active (running) since Thu 2020-07-16 12:01:55 EDT; 43min ago
-TriggeredBy: ● docker.socket
+TriggeredBy: docker.socket
        Docs: https://docs.docker.com
    Main PID: 639 (dockerd)
       Tasks: 51
      Memory: 131.1M
      CGroup: /system.slice/docker.service
-             └─639 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+              -639 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
 
 Jul 16 12:01:48 kali dockerd[639]: time="2020-07-16T12:01:48.196387191-04:00" level=warning msg="Your kernel does not support cgroup blkio weight_device"
 Jul 16 12:01:48 kali dockerd[639]: time="2020-07-16T12:01:48.196643952-04:00" level=info msg="Loading containers: start."
