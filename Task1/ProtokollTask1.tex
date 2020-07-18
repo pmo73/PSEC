@@ -192,6 +192,41 @@ siehe oben.
 Beim ACK-Scan lässt sich für alle Hosts herausfinden, ob sie von einer Firewall geschützt werden, des weiteren lässt sich sehen, dass beim FIN-Scan und ACK-Scan nicht alle Ports als offen gezeigt werden.
 
 \subsection*{Aufgabenteil d}
+\lstinputlisting{schwachstellen.bash}
+
+Es lässt sich erkennen, das FTP Server läuft, welcher Klartext annimmt und für einen FTP-Bounce Scan genutzt werden könnte. Es läuft ein SMTP Server, der aber eher kein Risiko darstellen sollte, da hier kein E-Mail Verkehr zu erwarten ist. Der SSH Server bietet ebenfalls wenig Angrifsfläche. Dahingegen läuft
+ein Telnet-Server, welcher direkten Zugriff gewährt und somit ein Risiko bietet. Auf Port 1524 läuft ein Ingelsrock Server, welcher schon direkt beim scan ein Teil des Betriebssystems anzeigt
+Der Apache und MySQL Server könnten ebenfalls weitere Schwachstellen darstellen
+
+\section*{Firewall Evasion}
+Als erstes wird die Firewall genauer angeschaut durch einen TCP-ACk scan
+\lstinputlisting{firewallEvasion.bash}
+Durch mehrfaches wiederholen fällt auf, dass sich die Ports ändern. Durch ausprobieren mehrerer Portnummern auf gut Glück hat man irgendwann erfolg
+\lstinputlisting{portTryingWebServer.bash}
+Auf den Host aus der vorigen Aufgabe kann über Telnet zugegriffen werden
+\lstinputlisting{telnetLogin.bash}
+Über Telnet lässt sich nun ein Netzwerk Scan durchführen
+\lstinputlisting{telnetScan.bash}
+Es lässt sich erkennen, dass bei 172.20.1.10 alle Ports offen sind, bei 11 keine und bei 13 nur Port 53. Stellt man nun mit curl eine Anfrage an den Webserver auf Port 53 erhält man eine Antwort
+\lstinputlisting{telnetHTTPAnfrage.bash}
+Auf 172.20.1.10 lässt sich ebenfalls der Webserver durch ausprobieren finden
+\lstinputlisting{telnetHTTPAnfrage2.bash}
+
+\section*{Nmap vs Zmap}
+\subsection*{Aufgabenteil a}
+Der IP-Block der Uni ist 134.60.0.0/16
+\subsection*{Aufgabenteil b}
+\lstinputlisting{nmapUniScan.bash}
+Nmap findet 98 Hosts in 48.76 Sekunden
+\subsection*{Aufgabenteil c}
+\lstinputlisting{zmap.bash}
+Zmap ist wesentlich schneller, findet aber weniger Geräte. Dies liegt daran, dass Zmap die Scans variiert.
+\subsection*{Aufgabenteil d}
+\lstinputlisting{nmapUniOffenePorts.bash}
+Werden nur Geräte mit offenem Port 80 gescannt, ist Nmap ähnlich schnell wie Zmap
+
+\section*{Firewall Evasion}
+\subsection*{Aufgabenteil a}
 
 
 \end{document}
