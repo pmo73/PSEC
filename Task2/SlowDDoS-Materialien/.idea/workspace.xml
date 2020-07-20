@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="589e5fcc-fa39-4a23-89b4-952a48e6af2c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../Task1/ProtokollTask1.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../../Task1/ProtokollTask1.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../httpsServer.bash" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="1erFBFs96wP8lJk8SHshKgandns" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
+  </component>
+  <component name="RunManager" selected="Application.Slowloris">
+    <configuration name="RuDY" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="assignment.attacks.RuDY" />
+      <module name="Slow DDoS - Materialien" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="assignment.attacks.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SimpleHTTPServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="assignment.server.SimpleHTTPServer" />
+      <module name="Slow DDoS - Materialien" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="assignment.server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Slowloris" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="assignment.attacks.Slowloris" />
+      <module name="Slow DDoS - Materialien" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="assignment.attacks.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Slowloris" />
+        <item itemvalue="Application.SimpleHTTPServer" />
+        <item itemvalue="Application.RuDY" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="589e5fcc-fa39-4a23-89b4-952a48e6af2c" name="Default Changelist" comment="" />
+      <created>1595071667952</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1595071667952</updated>
+      <workItem from="1595071669400" duration="315000" />
+      <workItem from="1595074019857" duration="3606000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1096" y="490" width="424" height="484" key="FileChooserDialogImpl" timestamp="1595075411396">
+      <screen x="67" y="27" width="2493" height="1413" />
+    </state>
+    <state x="1096" y="490" width="424" height="484" key="FileChooserDialogImpl/67.27.2493.1413/2560.360.1920.1080@67.27.2493.1413" timestamp="1595075411396" />
+    <state width="2447" height="397" key="GridCell.Tab.0.bottom" timestamp="1595082173246">
+      <screen x="67" y="27" width="2493" height="1413" />
+    </state>
+    <state width="2447" height="397" key="GridCell.Tab.0.bottom/67.27.2493.1413/2560.360.1920.1080@67.27.2493.1413" timestamp="1595082173246" />
+    <state width="2447" height="397" key="GridCell.Tab.0.center" timestamp="1595082173246">
+      <screen x="67" y="27" width="2493" height="1413" />
+    </state>
+    <state width="2447" height="397" key="GridCell.Tab.0.center/67.27.2493.1413/2560.360.1920.1080@67.27.2493.1413" timestamp="1595082173246" />
+    <state width="2447" height="397" key="GridCell.Tab.0.left" timestamp="1595082173246">
+      <screen x="67" y="27" width="2493" height="1413" />
+    </state>
+    <state width="2447" height="397" key="GridCell.Tab.0.left/67.27.2493.1413/2560.360.1920.1080@67.27.2493.1413" timestamp="1595082173246" />
+    <state width="2447" height="397" key="GridCell.Tab.0.right" timestamp="1595082173246">
+      <screen x="67" y="27" width="2493" height="1413" />
+    </state>
+    <state width="2447" height="397" key="GridCell.Tab.0.right/67.27.2493.1413/2560.360.1920.1080@67.27.2493.1413" timestamp="1595082173246" />
+  </component>
+</project>

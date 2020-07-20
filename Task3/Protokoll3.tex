@@ -1,0 +1,223 @@
+\NeedsTeXFormat{LaTeX2e}
+\documentclass[a4paper,12pt,
+headsepline,           % Linie zw. Kopfzeile und Text
+twoside,               % zweiseitig
+pointlessnumbers,      % keine Punkte nach den letzten Ziffern in Überschriften
+bibtotoc,              % LV im IV
+%DIV=15,               % Satzspiegel auf 15er Raster, schmalere Ränder   
+BCOR15mm               % Bindekorrektur
+%,draft
+]{scrbook}
+\KOMAoptions{DIV=last} % Neuberechnung Satzspiegel nach Laden von Paket helvet
+
+\pagestyle{headings}
+\usepackage{blindtext}
+
+% für Texte in deutscher Sprache
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% Helvetica als Standard-Dokumentschrift
+\usepackage[scaled]{helvet}
+%\usepackage{mathptmx}
+\renewcommand{\familydefault}{\sfdefault} 
+
+\usepackage{graphicx}
+
+% Für Tabellen mit fester Gesamtbreite und variabler Spaltenbreite
+\usepackage{tabularx} 
+
+% Besondere Schriftauszeichnungen
+\usepackage{url}              % \url{http://...} in Schreibmaschinenschrift
+\usepackage{color}            % zum Setzen farbigen Textes
+
+\usepackage{amssymb, amsmath} % Pakete für Mathe-Umgebungen und -Symbole
+
+\usepackage{setspace}         % Paket für div. Abstände, z.B. ZA
+%\onehalfspacing              % nur dann, wenn gefordert; ist sehr groß!!
+\setlength{\parindent}{0pt}   % kein linker Einzug der ersten Absatzzeile
+\setlength{\parskip}{1.4ex plus 0.35ex minus 0.3ex} % Absatzabstand, leicht variabel
+
+% Tiefe, bis zu der Überschriften in das Inhaltsverzeichnis kommen
+\setcounter{tocdepth}{3}      % ist Standard
+
+
+%\usepackage[printonlyused, withpage]{acronym}
+\usepackage[printonlyused]{acronym}
+\usepackage{comment}
+\usepackage{longtable}
+%\usepackage[maxdepth=8, mark]{gitinfo2}
+\usepackage{bytefield}
+\usepackage{smartdiagram}
+\usepackage{caption}
+\usepackage{hyperref}
+\usepackage{hypcap}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{mathtools}
+\usepackage{colortbl}
+\usepackage{xcolor}
+\usepackage[outline]{contour}
+\usetikzlibrary{arrows}
+\usetikzlibrary{calc,positioning,shapes,decorations.pathreplacing, matrix, backgrounds, fit}
+
+% hier Namen etc. einsetzen
+\newcommand{\fullname}{Björn Petersen}
+\newcommand{\email}{bjoern.petersen@uni-ulm.de}
+\newcommand{\titel}{Darstellung und Analyse SoC interner Kommunikationskanäle auf Protokollebene}
+\newcommand{\jahr}{2020}
+\newcommand{\matnr}{941984}
+\newcommand{\gutachterA}{Prof.\,Dr.-Ing\,Maurits Ortmanns}
+\newcommand{\gutachterB}{Dr.\,rer.\,nat.\,Dipl.-Ing\,Endric Schubert}
+\newcommand{\betreuer}{Dipl-Ing\, Ulrich Langenbach}
+
+% hier die Fakultät auswählen
+%\newcommand{\fakultaet}{---  Im Quellcode anpassen nicht vergessen! ---}
+\newcommand{\fakultaet}{Ingenieurwissenschaften, Informatik und\\Psychologie}
+%\newcommand{\fakultaet}{Mathematik und\\Wirtschafts-\\wissenschaften}
+%\newcommand{\fakultaet}{Medizin}
+%\newcommand{\fakultaet}{Naturwissenschaften}
+
+% hier das Institut einsetzen
+\newcommand{\institut}{Institut für Mikroelektronik}
+
+% Informationen, die LaTeX in die PDF-Datei schreibt
+\pdfinfo{
+  /Author (\fullname)
+  /Title (\titel)
+  /Producer     (pdfeTex 3.14159-1.30.6-2.2)
+  /Keywords ()
+}
+
+\usepackage{hyperref}
+\hypersetup{
+pdftitle=\titel,
+pdfauthor=\fullname,
+pdfsubject={Diplomarbeit},
+pdfproducer={pdfeTex 3.14159-1.30.6-2.2},
+colorlinks=false,
+pdfborder=0 0 0	% keine Box um die Links!
+}
+
+\usepackage{listings}
+\lstset{
+  language=bash,
+  basicstyle=\ttfamily,
+  columns=fullflexible,
+  frame=single,
+  breaklines=true,
+  postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space}
+}
+
+% Trennungsregeln
+\hyphenation{Sil-ben-trenn-ung}
+
+%commandes
+\newcommand{\selfprotokoll}{SELF-Protokoll}
+
+\begin{document}
+
+\section*{Assignment 1}
+\begin{enumerate}
+    \item Reproducible Builds dienen der Aufgabe, dass vom Endbenutzer sicher gegangen werden kann, dass die Software die Funktionalität erfüllt, die vom Entwickler vorgesehen ist und die Binary nicht manipuliert wurde. XCodeGhost hätte verhindert werden können, durch ein überprüfen des manipulierten XCodeInstaller oder der damit veröffentlichten Programme. Vorteile von Reproducible Builds sind, dass Endbenutzer sich der Qualität und Funktionalität sicher sein können. Das Problem ist, dass dies mit einem sehr hohen Aufwand zusammenhängt und oft gar nicht möglich ist.
+    \item Man kann sich nie sicher sein, dass alles sicher ist. Es können manche Kriterien ausgeschlossen werden, aber man muss immernoch viel anderer Software dabei vertrauen wie dem OS oder Compilern oder IDEs
+\end{enumerate}
+
+\section*{Assignment 2}
+\subsection*{Aufgabenteil a}
+Wie in der Ausgabe unten zu sehen ist, machen die beiden binaries unterschiedliche Ausgaben zu Datum, OS und dem Namen des Users. Da Daten wie das OS sich schlecht dauerhaft festlegen lassen ist es weniger sinnvoll diese für reproducible Builds zu verwenden.
+Sinnvoller wäre hier ein Stempel der angibt wann die Datei das letzte mal verändert wurde, um sicher zu stellen, dass es die selben sind.
+
+\begin{lstlisting}
+psec-repr-builds@psec-repr-builds:~/ ./precompiled_main --version
+Hello World (May 28 2020 11:03:35)
+compiled with g++ 7.5.0 (Arch Linux (Linux 5.6.4-arch1-1 x86_64)) by eve
+psec-repr-builds@psec-repr-builds:~/ ./main --version
+Hello World (June 28 2020 15:01:24)
+compiled with g++ 7.5.0 (Ubuntu 18.04.4 LTS (linux 5.3.0-53-generic x86_64)) psec-repr-builds
+\end{lstlisting}
+
+\subsection*{Aufgabenteil b}
+Möchte man nun doch dass das File bei jeder Übersetzung unabhängig vom User und dem OS es jedes mal identisch ist, so muss man das Makefile
+dem entsprechend anpassen, dass diese Werte immer einen festen Wert haben. Nun ist die kompilierte Version exakt identisch mit der Vorkompilierten.
+Es müssen 3 Zeilen geändert werden:
+\begin{lstlisting}
+  USER="\"eve"\"
+  DISTRO="\"Arch Linux (Linux 5.6.4-arch1-1 x86_64)"\"
+  main: main.cpp faketime 'May 28 2020 11:03:35' $(CC) $(CPPFLAGS) -o main main.cpp
+\end{lstlisting}
+
+\subsection*{Aufgabenteil c}
+\begin{lstlisting}
+  #include  <iostream >
+  #include  <cstring >
+  #include  <string >
+  #include  <sstream >
+  #define  NAME "Hello  World"
+  #ifndef  VERSION
+  #define  VERSION  "0.0.0 - alpha"
+  #endif
+  #define  AUTHOR "Bjoern"
+  const  std:: string  ver_string(const  int a, const  int b, const  int c) {
+    std:: ostringstream  ss;
+    ss << a << '.' << b << '.' << c;
+    return  ss.str ();
+  }
+  const  std:: string  true_cxx =
+  #ifdef  __clang__"clang ++";
+  #else "g++";
+  #endif//  compiler  version
+  const  std:: string  true_cxx_ver =
+  #ifdef  __clang__
+  ver_string(__clang_major__ , __clang_minor__ , __clang_patchlevel__ );
+  #else ver_string(__GNUC__ , __GNUC_MINOR__ , __GNUC_PATCHLEVEL__ );
+  #endif
+  int main(int argc , char *argv []) {
+    if (argc  >= 2 &&  strcmp(argv[1], "--version") == 0) {
+      std::cout  << NAME  << " (" << VERSION  << ")" << std::endl;
+      std::cout  << "Compiled with " << true_cxx  << " " << true_cxx_ver<< ", author: "<< AUTHOR  << std::endl;
+      std::cout  << "Author: " << AUTHOR << std::endl
+    } else {
+      std::cout  << "Hello World!" << std::endl;
+    }
+    return  0;
+  }
+\end{lstlisting}
+Und das neue Makefile
+\begin{lstlisting}
+CPPFLAGS=-Wall -O2 -DVERSION=$(VERSION)
+main: main.cpp$(CC) $(CPPFLAGS) -o main main.cpp
+\end{lstlisting}
+
+\section*{Assignment 3}
+\subsection*{Aufgabenteil a}
+Hier wird ebenfalls wieder eine vorkompilierte Binary mit einer neu kompilierten verglichen mittels des Befehls \texttt{diffscope}.
+Es ist in der Ausgabe erkennbar, dass die beiden Binaries sich unterscheiden, da die Dateien a.c und b.c in einer anderen Reihenfolge mit einkompiliert werden als bei der vorkompilierten. Dies führt zu dem Unterschied.
+
+\subsection*{Aufgabenteil b}
+Durch ausführen der beiden Binaries ist zu sehen, dass die Ausgabe die Nichtreproduzierbarkeit nicht beeinflusst.
+
+\subsection*{Aufgabenteil c}
+Es muss die Reihenfolge im Makefile angepasst werden, so dass die Dateien in der selben Reihenfolge wie bei der Vorkompilierten eingebunden werden. Dies geschieht im Makefile unter Sources. Dies muss angepasst werden:
+\begin{lstlisting}
+  SOURCES = main.c b.c a.c
+\end{lstlisting}
+
+\section*{Assignment 4}
+\subsection*{Aufgabenteil a}
+Auf dem Übungsblatt wird beschrieben wie der Sourcecode von git geklont werden kann und anschließend in einem Docker Container gebaut wird. Es wurden folgende Befehle verwendet, die aus dem Übungsblatt stammen:
+\begin{lstlisting}
+  git clone https://github.com/signalapp/Signal-Android.git
+  cd Signal-Android && git checkout v4.59.10
+  docker run -rm -v "$(pwd)":/project -w /project whispersystems/signal-android:1.3
+  ./gradlew clean assemblePlayRelease --exclude-task signProductionPlayRelease
+  python3 apkdiff/apkdiff.py ../org.thoughtcrime.securesms 4.59.10-6301-armeabi-v7a.apk app/build/outputs/apk/play/release/Signal-play-armeabi-v7a-release-unsigned-4.59.10.apk
+\end{lstlisting}
+
+Es wird die Binary im Docker Container mit der vorkompilierten verglichen und es zeigt sich, dass tatsächlich beide identisch sind.
+
+\subsection*{Aufgabenteil b}
+man kann sich nie zu voller Sicherheit auf die Echtheit einer Binary vertrauen, da es immer Zweifel gibt. Aber somit lässt sich schonmal etwas mehr auf Software zu vertrauen, da es schwerer ist, hier etwas zu fälschen. Hier wurde ein Docker Image verwendet, welchem man trauen müsste. Wenn man dies nicht tut, kann dies auch selber aus einem Dockerfile erstellt werden um sicher zu gehen.
+
+\end{document}
